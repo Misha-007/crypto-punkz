@@ -1,3 +1,19 @@
+# crypto-punkz
+
+**Home Screen**
+
+<img src="public\layout\home.png"/>
+
+**Main Screen**
+
+<img src="public\layout\main.png"/>
+
+**Additional UI: Shop**
+
+<img src="public\layout\shop.png"/>
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
