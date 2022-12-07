@@ -1,20 +1,17 @@
-import Navigation from "./components/Navigation";
-import {Routes,Route} from 'react-router-dom'
-import Play from "./components/Play";
-import Settings from "./components/Settings";
-import Help from "./components/Help"
-import {useState} from 'react'
+import MainMenu from './components/MainMenu.js'
+import Home from './components/Home.js'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 function App() {
-  const [showNav,setShowNav] = useState(true)
   return (
-    <div className="container">
-      {showNav&&<Navigation/>}
-      <Routes>
-        <Route path="/Play" element={<Play funcNav={setShowNav}/>}/>
-        <Route path="/Help" element={<Help funcNav={setShowNav}/>}/>
-        <Route path="/Settings" element={<Settings funcNav={setShowNav}/>}/>
-      </Routes>
-    </div>
+    <Router>
+        <div className='app'>
+        <Routes>
+            <Route exact path='/' element={< MainMenu />}></Route>
+            <Route exact path='/home' element={< Home />}></Route>
+        </Routes>
+        </div>
+    </Router>
   );
 }
 
