@@ -1,21 +1,21 @@
 import infoBg from '../assets/robot-info-box.png'
 import coin from '../assets/coin.png'
 
-const HomeRobotInfo = ({ robot }) => {
+const HomeRobotInfo = ({ robots }) => {
   return (
     <div className='info-container'>
         <img src={infoBg} alt="" />
         <div className='info-box'>
             <div className='info-img'>
-                <img src={robot.imagePath} alt={robot.robotName} />
+                <img src={robots.image} alt={robots.robotName} />
             </div>
             <div className='info'>
-                <h2>{robot.robotName + ' [Lv. ' + robot.currentLevel + ']'}</h2>
+                <h2>{robots.robotName + ' [Lv. ' + robots.currentLevel + ']'}</h2>
                 <div>
-                    <span>Level: {robot.currentLevel}</span>
-                    <span className='sell-for'>Sells for:&nbsp;<img src={coin} alt="" /> {robot.sellingPrice}</span>
+                    <span>Level: {robots.currentLevel}</span>
+                    <span className='sell-for'>Sells for:&nbsp;<img src={coin} alt="" /> {robots.price}</span>
                 </div>
-                <p>{robot.description}</p>
+                <p>{robots.description}</p>
             </div>
         </div>
     </div>

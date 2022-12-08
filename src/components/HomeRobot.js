@@ -1,12 +1,12 @@
 import robotBg from '../assets/home-robot-box.png'
 
-const HomeRobot = ({ robot }) => {
+const HomeRobot = ({ robots }) => {
   return (
     <div className='home-robot'>
         <img src={robotBg} className='robot-bg'/>
         <div>
             <div className='img'>
-                <img src={robot.imagePath} alt={robot.robotName} />
+                <img src={robots.image} alt={robots.robotName} />
             </div>
             <div className='round-btn'>
                 <input type='button' className='upgrade-btn'></input>
@@ -20,6 +20,12 @@ const HomeRobot = ({ robot }) => {
             </div>
         </div>
     </div>
+//   return (
+//     <>
+//     {robots.map((robot)=>(
+//       <Robot key ={robot.id} robot={robot} onRemove={removeRobot}/>
+//     ))}
+//     </>
   )
 }
 
