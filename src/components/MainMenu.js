@@ -2,14 +2,14 @@ import MainMenuButtons from './MainMenuButtons.js'
 import logo from '../assets/logo.png'
 
 const MainMenu = () => {
-  return (
-    <div className='main'>
-        <div className='logo'>
-            <img src={logo} alt='Cryptopunkz Logo'></img>
+    return (
+        <div className='main'>
+            <div className='logo'>
+                <img src={logo} alt='Cryptopunkz Logo'></img>
+            </div>
+            <MainMenuButtons />
         </div>
-        <MainMenuButtons />
-    </div>
-  )
+    )
 }
 
 export default MainMenu
