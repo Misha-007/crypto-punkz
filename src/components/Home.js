@@ -1,6 +1,9 @@
+import HomeRobot from "./HomeRobot"
 const Home = () => {
     return (
-      <div>Home</div>
+      <div>Home
+        <HomeRobot/>
+      </div>
     )
 }
   
