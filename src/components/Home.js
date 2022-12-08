@@ -55,24 +55,37 @@ const Home = () => {
           price: 100
         },
       ])
+    const [robotInfo, setRobotInfo] = useState([ 
+      {
+      id: 1,
+      robotName: "Robot 1",
+      image:require('../assets/rob1.gif'),
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      currentLevel: 1,
+      price: 100
+      }
+    ])
     //Remove Robot
     const removeRobot = (id) =>{
         setRobots(robots.filter((robot) => robot.id !== id))
+    }
+    const robotInfos = (id) =>{
+      let info = robots.find(x => x.id === id)
+      setRobotInfo([info])
+      console.log(robotInfo)
     }
     return (
       <div className='home'>
         <HomeHeader />
         <div className='home-container'>
             <div className='robot-container'>
-                {/* make this a loop */}
-                <HomeRobot robots={robots}/>
-                <HomeRobot robots={robots}/>
-                <HomeRobot robots={robots}/>
-                <HomeRobot robots={robots}/>
-                <HomeRobot robots={robots}/>
-                <HomeRobot robots={robots}/>
-            </div>
-            <HomeRobotInfo robots={robots}/>
+            {robots.map((robot)=>(
+              <HomeRobot key ={robot.id} robot={robot} onRemove={removeRobot} onToggle={robotInfos} />
+            ))}
+            </div>  
+            {robotInfo.map((robot)=>(
+              <HomeRobotInfo robot={robot}/>
+            ))}
         </div>
       </div>
     )
