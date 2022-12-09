@@ -196,6 +196,8 @@ input[type=button].shop-btn:hover {
     height: 45%;
     border-radius: 10px;
     width: 31%;
+    min-width: 250px;
+    height: 173px;
     color: #fff;
 }
 
@@ -214,7 +216,7 @@ input[type=button].shop-btn:hover {
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 75% 25%;
+    grid-template-rows: 1fr 35px;
     grid-template-areas: 
         'img img img round-btn'
         'sell-btn sell-btn timer timer';
@@ -416,14 +418,14 @@ div.info > p {
     top: 55%;
     left: 50%;
     transform: translate(-49%, -50%);
-    display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33%;
-    row-gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
 }
 
 .shop-robot {
-    width: 100%;
-    height: 100%;
+    width: 260px;
+    height: 200px;
     color: #fff;
     display: grid;
     grid-template-columns: 50% 50%;
