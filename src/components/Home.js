@@ -3,62 +3,14 @@ import HomeRobot from './HomeRobot'
 import HomeRobotInfo from './HomeRobotInfo'
 import Shop from './Shop.js'
 import { useState, useEffect } from 'react'
+import {robots as defaultRobots} from './dataRobots.js'
 
 const Home = () => {
     // Constants
     const TIME = 2000; // update robot every 2 seconds
     const PRICE_RATE = 0.05; // 5% growth in price
     //List of owned robots
-    const [robots, setRobots] = useState([
-        {
-            id: 1,
-            robotName: "Robot 1",
-            image: require('../assets/rob1.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        },
-        {
-            id: 2,
-            robotName: "Robot 2",
-            image: require('../assets/rob2.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        },
-        {
-            id: 3,
-            robotName: "Robot 3",
-            image: require('../assets/rob1.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        },
-        {
-            id: 4,
-            robotName: "Robot 4",
-            image: require('../assets/rob2.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        },
-        {
-            id: 5,
-            robotName: "Robot 5",
-            image: require('../assets/rob1.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        },
-        {
-            id: 6,
-            robotName: "Robot 6",
-            image: require('../assets/rob2.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        },
-    ])
+    const [robots, setRobots] = useState(defaultRobots.slice(0,6)) // Robots 1 - 6
     //selected robot
     const [robotInfo, setRobotInfo] = useState(
         {
@@ -71,56 +23,7 @@ const Home = () => {
         }
     )
     //shop robot
-    const [shopRobots, setShopRobots]=useState([
-        {
-            id: 7,
-            robotName: "Robot 7",
-            image: require('../assets/rob1.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        },
-        {
-            id: 8,
-            robotName: "Robot 8",
-            image: require('../assets/rob2.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        },
-        {
-            id: 9,
-            robotName: "Robot 9",
-            image: require('../assets/rob1.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        },
-        {
-            id: 10,
-            robotName: "Robot 10",
-            image: require('../assets/rob2.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        },
-        {
-            id: 11,
-            robotName: "Robot 11",
-            image: require('../assets/rob1.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        },
-        {
-            id: 12,
-            robotName: "Robot 12",
-            image: require('../assets/rob2.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            currentLevel: 1,
-            price: 100
-        }
-    ])
+    const [shopRobots, setShopRobots]=useState(defaultRobots.slice(6,12)) // robots 7 - 12
     const [isOpen, setIsOpen] = useState(false)
     //Sell robot 
     const sellRobot = (id) => {
@@ -156,8 +59,10 @@ const Home = () => {
     useEffect(() => {
         const growth = setInterval(() => {
             // This will run every <TIME>
-            setRobots(robots.map(robot => ({...robot, price: Math.ceil(robot.price*(1+PRICE_RATE)), currentLevel: ++robot.currentLevel})));
-            setRobotInfo(robots.find(robot => robot.id === robotInfo.id));
+            if (robots && robotInfo.id) {
+                setRobots(robots.map(robot => ({...robot, price: Math.ceil(robot.price*(1+PRICE_RATE)), currentLevel: ++robot.currentLevel})));
+                setRobotInfo(robots.find(robot => robot.id === robotInfo.id));
+            }
         }, TIME)
 
         return () => clearInterval(growth)
