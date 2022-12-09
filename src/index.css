@@ -191,6 +191,27 @@ input[type=button].shop-btn:hover {
     box-sizing: border-box;
 }
 
+.empty-robot-container {
+    position: relative;
+    align-self: center;
+    max-height: 450px;
+    height: 80%;
+    color: #fff;
+    letter-spacing: 2px;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    border: 3px solid #fff;
+    box-sizing: border-box;  
+}
+
+.empty-robot-container > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
 .home-robot {
     position: relative;
     height: 45%;

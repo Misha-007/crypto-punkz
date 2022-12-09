@@ -4,6 +4,7 @@ import HomeRobotInfo from './HomeRobotInfo'
 import Shop from './Shop.js'
 import { useState, useEffect } from 'react'
 import {robots as defaultRobots} from './dataRobots.js'
+import sadRobot from '../assets/sad-robot.png'
 
 const Home = () => {
     // Constants
@@ -90,8 +91,11 @@ const Home = () => {
                     ))}
                 </div>
                 //when no robots
-                : <div className='robot-container'> 
-                    <h3>Buy Robots</h3> 
+                : <div className='empty-robot-container'> 
+                    <div>
+                        <img src={sadRobot} alt='Sad Robot' />
+                        <h3>You have no robots yet</h3>
+                    </div>
                   </div>}
                 <HomeRobotInfo robotInfo={robotInfo} />
             </div>
