@@ -67,6 +67,23 @@ const Home = () => {
         setRobots([...robots,newRobot])
         console.log("hello", id)
     }
+
+    // updated robot
+    const upgradeRobot = (id) => {
+        
+        setRobots(
+            robots.map(robot =>
+                (robot.id === id 
+                ? ({...robot, price: Math.ceil(robot.price*(1+PRICE_RATE)), currentLevel: ++robot.currentLevel})
+                : robot)
+            )
+        )
+
+        setRobotInfo(
+            robots.find( robot => robot.id === id)
+        )
+    }
+
     // Updates on robots and robotInfo
     useEffect(() => {
         const growth = setInterval(() => {
@@ -87,7 +104,7 @@ const Home = () => {
                 { robots.length > 0 ?
                 <div className='robot-container'>
                     {robots.map((robot) => (
-                        <HomeRobot key={robot.id} robot={robot} onRemove={sellRobot} onToggle={selectRobot} />
+                        <HomeRobot key={robot.id} robot={robot} onRemove={sellRobot} onToggle={selectRobot} onUpgrade={upgradeRobot} />
                     ))}
                 </div>
                 //when no robots

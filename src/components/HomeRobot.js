@@ -1,6 +1,6 @@
 import robotBg from '../assets/home-robot-box.png'
 
-const HomeRobot = ({ robot, onRemove, onToggle }) => {
+const HomeRobot = ({ robot, onUpgrade, onRemove, onToggle }) => {
     return (
         <div className='home-robot'>
             <img src={robotBg} className='robot-bg' alt='Robot Box Background'/>
@@ -9,7 +9,7 @@ const HomeRobot = ({ robot, onRemove, onToggle }) => {
                     <img src={robot.image} alt={robot.robotName} />
                 </div>
                 <div className='round-btn'>
-                    <input type='button' className='upgrade-btn'></input>
+                    <input type='button' className='upgrade-btn' onClick={() => onUpgrade(robot.id)}></input>
                     <input type='button' className='info-btn' onClick={() => onToggle(robot.id)}></input>
                 </div>
                 <div className='sell-btn'>
