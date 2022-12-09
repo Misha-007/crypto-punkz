@@ -9,6 +9,10 @@ const Home = () => {
     // Constants
     const TIME = 2000; // update robot every 2 seconds
     const PRICE_RATE = 0.05; // 5% growth in price
+
+    // total coins
+    const [coins, setCoins] = useState(0)
+
     //List of owned robots
     const [robots, setRobots] = useState(defaultRobots.slice(0,6)) // Robots 1 - 6
     //selected robot
@@ -27,6 +31,13 @@ const Home = () => {
     const [isOpen, setIsOpen] = useState(false)
     //Sell robot 
     const sellRobot = (id) => {
+        
+        robots.find(robot => {
+            if (robot.id == id) {
+                setCoins(coins + robot.price)
+            }
+        })
+
         setRobots(robots.filter((robot) => robot.id !== id))
         const oldRobot = robots.find(x => x.id === id)
         setShopRobots([...shopRobots,oldRobot])
@@ -70,7 +81,7 @@ const Home = () => {
 
     return (
         <div className='home'>    
-            <HomeHeader setIsOpen={setIsOpen}/>
+            <HomeHeader setIsOpen={setIsOpen} coins={coins}/>
             <div className='home-container'>
                 { robots.length > 0 ?
                 <div className='robot-container'>
