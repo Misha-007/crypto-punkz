@@ -2,9 +2,12 @@ import HomeHeader from './HomeHeader.js'
 import HomeRobot from './HomeRobot'
 import HomeRobotInfo from './HomeRobotInfo'
 import Shop from './Shop.js'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Home = () => {
+    // Constants
+    const TIME = 2000; // update robot every 2 seconds
+    const PRICE_RATE = 0.05; // 5% growth in price
     //List of owned robots
     const [robots, setRobots] = useState([
         {
@@ -149,6 +152,17 @@ const Home = () => {
         setRobots([...robots,newRobot])
         console.log("hello", id)
     }
+    // Updates on robots and robotInfo
+    useEffect(() => {
+        const growth = setInterval(() => {
+            // This will run every <TIME>
+            setRobots(robots.map(robot => ({...robot, price: Math.ceil(robot.price*(1+PRICE_RATE)), currentLevel: ++robot.currentLevel})));
+            setRobotInfo(robots.find(robot => robot.id === robotInfo.id));
+        }, TIME)
+
+        return () => clearInterval(growth)
+    }, [robots, robotInfo]);
+
     return (
         <div className='home'>    
             <HomeHeader setIsOpen={setIsOpen}/>
