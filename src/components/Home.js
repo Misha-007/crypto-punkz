@@ -141,11 +141,16 @@ const Home = () => {
         <div className='home'>    
             <HomeHeader setIsOpen={setIsOpen}/>
             <div className='home-container'>
+                { robots.length > 0 ?
                 <div className='robot-container'>
                     {robots.map((robot) => (
                         <HomeRobot key={robot.id} robot={robot} onRemove={sellRobot} onToggle={selectRobot} />
                     ))}
                 </div>
+                //when no robots
+                : <div className='robot-container'> 
+                    <h3>"Buy Robots"</h3> 
+                  </div>}
                 <HomeRobotInfo robotInfo={robotInfo} />
             </div>
             {isOpen && <Shop setIsOpen={setIsOpen} shopRobots={shopRobots} onBuy={buyRobot}/>}
