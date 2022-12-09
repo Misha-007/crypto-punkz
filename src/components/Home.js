@@ -59,8 +59,11 @@ const Home = () => {
     useEffect(() => {
         const growth = setInterval(() => {
             // This will run every <TIME>
-            setRobots(robots.map(robot => ({...robot, price: Math.ceil(robot.price*(1+PRICE_RATE)), currentLevel: ++robot.currentLevel})));
-            setRobotInfo(robots.find(robot => robot.id === robotInfo.id));
+            if (robots && robotInfo.id) {
+                console.log(robots)
+                setRobots(robots.map(robot => ({...robot, price: Math.ceil(robot.price*(1+PRICE_RATE)), currentLevel: ++robot.currentLevel})));
+                setRobotInfo(robots.find(robot => robot.id === robotInfo.id));
+            }
         }, TIME)
 
         return () => clearInterval(growth)
