@@ -116,7 +116,7 @@ const Home = () => {
         const oldRobot = robots.find(x => x.id === id)
         setShopRobots([...shopRobots,oldRobot])
         if (robots.length > 1) {
-            setRobotInfo(robots[0]) 
+            setRobotInfo(robots[1]) 
         } else {
             setRobotInfo({
                     id: null,
