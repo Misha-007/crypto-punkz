@@ -3,7 +3,7 @@ import HomeRobot from './HomeRobot'
 import HomeRobotInfo from './HomeRobotInfo'
 import Shop from './Shop.js'
 import { useState, useEffect } from 'react'
-import {robots as defaultRobots} from './robots.js'
+import {robots as defaultRobots} from './dataRobots.js'
 
 const Home = () => {
     // Constants
