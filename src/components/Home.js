@@ -67,15 +67,75 @@ const Home = () => {
             price: 100
         }
     )
+    //shop robot
+    const [shopRobots, setShopRobots]=useState([
+        {
+            id: 7,
+            robotName: "Robot 7",
+            image: require('../assets/rob1.gif'),
+            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            currentLevel: 1,
+            price: 100
+        },
+        {
+            id: 8,
+            robotName: "Robot 8",
+            image: require('../assets/rob2.gif'),
+            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            currentLevel: 1,
+            price: 100
+        },
+        {
+            id: 9,
+            robotName: "Robot 9",
+            image: require('../assets/rob1.gif'),
+            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            currentLevel: 1,
+            price: 100
+        },
+        {
+            id: 10,
+            robotName: "Robot 10",
+            image: require('../assets/rob2.gif'),
+            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            currentLevel: 1,
+            price: 100
+        },
+        {
+            id: 11,
+            robotName: "Robot 11",
+            image: require('../assets/rob1.gif'),
+            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            currentLevel: 1,
+            price: 100
+        },
+        {
+            id: 12,
+            robotName: "Robot 12",
+            image: require('../assets/rob2.gif'),
+            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            currentLevel: 1,
+            price: 100
+        }
+    ])
     const [isOpen, setIsOpen] = useState(false)
-    //Sell robot
+    //Sell robot 
     const sellRobot = (id) => {
         setRobots(robots.filter((robot) => robot.id !== id))
+        const oldRobot = robots.find(x => x.id === id)
+        setShopRobots([...shopRobots,oldRobot])
     }
     //Set selected robot
     const selectRobot = (id) => {
-        let info = robots.find(x => x.id === id)
+        const info = robots.find(x => x.id === id)
         setRobotInfo(info)
+    }
+    //Buy robot
+    const buyRobot = (id) =>{
+        setShopRobots(shopRobots.filter((shopRobot) => shopRobot.id !== id ))
+        const newRobot = shopRobots.find(x => x.id === id)
+        setRobots([...robots,newRobot])
+        console.log("hello", id)
     }
     return (
         <div className='home'>    
@@ -88,7 +148,7 @@ const Home = () => {
                 </div>
                 <HomeRobotInfo robotInfo={robotInfo} />
             </div>
-            {isOpen && <Shop setIsOpen={setIsOpen}/>}
+            {isOpen && <Shop setIsOpen={setIsOpen} shopRobots={shopRobots} onBuy={buyRobot}/>}
         </div>
     )
 }
