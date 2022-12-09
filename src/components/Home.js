@@ -10,7 +10,7 @@ const Home = () => {
     const TIME = 2000; // update robot every 2 seconds
     const PRICE_RATE = 0.05; // 5% growth in price
     //List of owned robots
-    const [robots, setRobots] = useState(defaultRobots.slice(0,7)) // Robots 1 - 6
+    const [robots, setRobots] = useState(defaultRobots.slice(0,6)) // Robots 1 - 6
     //selected robot
     const [robotInfo, setRobotInfo] = useState(
         {
@@ -23,7 +23,7 @@ const Home = () => {
         }
     )
     //shop robot
-    const [shopRobots, setShopRobots]=useState(defaultRobots.slice(7,13)) // robots 7 - 12
+    const [shopRobots, setShopRobots]=useState(defaultRobots.slice(6,12)) // robots 7 - 12
     const [isOpen, setIsOpen] = useState(false)
     //Sell robot 
     const sellRobot = (id) => {
