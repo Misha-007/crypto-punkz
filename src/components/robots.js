@@ -1,4 +1,5 @@
 export const robots = [
+    // ROBOTS 1 - 6 ARE DEFAULT OWNED ROBOTS
     {
         id: 1,
         robotName: "Robot 1",
@@ -47,6 +48,7 @@ export const robots = [
         currentLevel: 1,
         price: 100
     },
+    // ROBOTS 7 - 12 ARE ROBOTS AVAILABLE ON SHOP
     {
         id: 7,
         robotName: "Robot 7",
