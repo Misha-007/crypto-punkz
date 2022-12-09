@@ -57,7 +57,16 @@ const Home = () => {
         },
     ])
     //selected robot
-    const [robotInfo, setRobotInfo] = useState(robots[0])
+    const [robotInfo, setRobotInfo] = useState(
+        {
+            id: 1,
+            robotName: "Robot 1",
+            image: require('../assets/rob1.gif'),
+            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            currentLevel: 1,
+            price: 100
+        }
+    )
     //shop robot
     const [shopRobots, setShopRobots]=useState([
         {
@@ -115,18 +124,6 @@ const Home = () => {
         setRobots(robots.filter((robot) => robot.id !== id))
         const oldRobot = robots.find(x => x.id === id)
         setShopRobots([...shopRobots,oldRobot])
-        if (robots.length > 1) {
-            setRobotInfo(robots[0]) 
-        } else {
-            setRobotInfo({
-                    id: null,
-                    robotName: null,
-                    image: null,
-                    description: "No robots at home. Quick! Purchase one!",
-                    currentLevel: 0,
-                    price: 0
-                })
-        }
     }
     //Set selected robot
     const selectRobot = (id) => {
@@ -138,7 +135,6 @@ const Home = () => {
         setShopRobots(shopRobots.filter((shopRobot) => shopRobot.id !== id ))
         const newRobot = shopRobots.find(x => x.id === id)
         setRobots([...robots,newRobot])
-        setRobotInfo(newRobot)
         console.log("hello", id)
     }
     return (
@@ -153,7 +149,7 @@ const Home = () => {
                 </div>
                 //when no robots
                 : <div className='robot-container'> 
-                    <h3>"Buy Robots"</h3> 
+                    <h3>Buy Robots</h3> 
                   </div>}
                 <HomeRobotInfo robotInfo={robotInfo} />
             </div>
