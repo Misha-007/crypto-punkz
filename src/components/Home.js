@@ -116,7 +116,6 @@ const Home = () => {
         const oldRobot = robots.find(x => x.id === id)
         setShopRobots([...shopRobots,oldRobot])
         if (robots.length > 1) {
-            // set to index 1 instead of 0 (first item) because for some reason, the robots array does not get updated immediately upon selling
             setRobotInfo(robots[0]) 
         } else {
             setRobotInfo({
