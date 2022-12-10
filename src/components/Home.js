@@ -85,12 +85,17 @@ const Home = () => {
 
     }
 
+    const grow = (robot) => {
+        robot.price = Math.ceil(robot.price*(1+PRICE_RATE));
+        robot.currentLevel = ++ robot.currentLevel;
+        return robot;
+    }
     // Updates on robots and robotInfo
     useEffect(() => {
         const growth = setInterval(() => {
             // This will run every <TIME>
             if (robots && robotInfo.id) {
-                setRobots(robots.map(robot => ({...robot, price: Math.ceil(robot.price*(1+PRICE_RATE)), currentLevel: ++robot.currentLevel})));
+                setRobots(robots.map(grow));
                 setRobotInfo(robots.find(robot => robot.id === robotInfo.id));
             }
         }, TIME)
