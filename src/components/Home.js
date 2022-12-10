@@ -71,13 +71,7 @@ const Home = () => {
     // updated robot
     const upgradeRobot = (id) => {
     
-        setRobots(
-            robots.map(robot =>
-                (robot.id === id 
-                ? ({...robot, currentLevel: robot.currentLevel + 1, price: Math.ceil(robot.price*(1+PRICE_RATE))})
-                : robot)
-            )
-        )
+        setRobots(robots.map(grow))
 
         setRobotInfo(
             robots.find( robot => robot.id === id)
