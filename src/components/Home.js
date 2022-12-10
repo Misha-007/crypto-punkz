@@ -67,6 +67,24 @@ const Home = () => {
         setRobots([...robots,newRobot])
         console.log("hello", id)
     }
+
+    // updated robot
+    const upgradeRobot = (id) => {
+    
+        setRobots(
+            robots.map(robot =>
+                (robot.id === id 
+                ? ({...robot, currentLevel: robot.currentLevel + 1, price: Math.ceil(robot.price*(1+PRICE_RATE))})
+                : robot)
+            )
+        )
+
+        setRobotInfo(
+            robots.find( robot => robot.id === id)
+        )
+
+    }
+
     const grow = (robot) => {
         robot.price = Math.ceil(robot.price*(1+PRICE_RATE));
         robot.currentLevel = ++ robot.currentLevel;
@@ -92,7 +110,7 @@ const Home = () => {
                 { robots.length > 0 ?
                 <div className='robot-container'>
                     {robots.map((robot) => (
-                        <HomeRobot key={robot.id} robot={robot} onRemove={sellRobot} onToggle={selectRobot} />
+                        <HomeRobot key={robot.id} robot={robot} onRemove={sellRobot} onToggle={selectRobot} onUpgrade={upgradeRobot} />
                     ))}
                 </div>
                 //when no robots
