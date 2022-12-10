@@ -2,9 +2,11 @@ import HomeHeader from './HomeHeader.js'
 import HomeRobot from './HomeRobot'
 import HomeRobotInfo from './HomeRobotInfo'
 import Shop from './Shop.js'
+import Avatars from './Avatars.js'
 import { useState, useEffect } from 'react'
 import {robots as defaultRobots} from './dataRobots.js'
 import sadRobot from '../assets/sad-robot.png'
+import {avatars as defaultAvatars} from './dataAvatars.js'
 
 const Home = () => {
     // Constants
@@ -16,6 +18,20 @@ const Home = () => {
 
     //List of owned robots
     const [robots, setRobots] = useState(defaultRobots.slice(0,6)) // Robots 1 - 6
+    //list of avatars
+    const[avatars,setAvatars]=useState(defaultAvatars)
+    //selected avatar
+    const [selected,setSelected]=useState(
+        {
+            id: 1,
+            image: require('../assets/avatar.png'),
+        }
+    )
+    const selectedAvatar = (id) =>{
+        const avatar = avatars.find(x => x.id === id)
+        setSelected(avatar)
+    }
+    const [isModal, setIsModal] = useState(false)
     //selected robot
     const [robotInfo, setRobotInfo] = useState(
         {
@@ -113,7 +129,7 @@ const Home = () => {
 
     return (
         <div className='home'>    
-            <HomeHeader setIsOpen={setIsOpen} coins={coins}/>
+            <HomeHeader setIsOpen={setIsOpen} coins={coins} selected={selected} setIsModal={setIsModal}/>
             <div className='home-container'>
                 { robots.length > 0 ?
                 <div className='robot-container'>
@@ -131,6 +147,7 @@ const Home = () => {
                 <HomeRobotInfo robotInfo={robotInfo} />
             </div>
             {isOpen && <Shop setIsOpen={setIsOpen} shopRobots={shopRobots} onBuy={buyRobot}/>}
+            {isModal && <Avatars setIsModal={setIsModal} avatars={avatars} selectedAvatar={selectedAvatar}/>}
         </div>
     )
 }

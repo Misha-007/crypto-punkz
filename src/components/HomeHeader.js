@@ -1,8 +1,7 @@
 import logo from '../assets/logo.png'
 import coinBar from '../assets/coin-bar.png'
-import avatar from '../assets/avatar.png'
 
-const HomeHeader = ({ setIsOpen, coins }) => {
+const HomeHeader = ({ setIsOpen, coins,selected,setIsModal }) => {
     return (
         <div className='header'>
             <img src={logo} className='logo' alt='Cryptopunkz Logo' />
@@ -12,7 +11,7 @@ const HomeHeader = ({ setIsOpen, coins }) => {
                     <span>{coins}</span>
                 </div>
                 <input type="button" className='shop-btn' onClick={() => setIsOpen(true)}/>
-                <img src={avatar} className='avatar' alt='Cryptopunkz Logo' />
+                <img src={selected.image} className='avatar' alt='Cryptopunkz Logo' onClick={() => setIsModal(true)}/>
             </div>
         </div>
     )
