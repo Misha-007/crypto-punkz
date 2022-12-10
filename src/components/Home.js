@@ -68,10 +68,24 @@ const Home = () => {
         console.log("hello", id)
     }
 
+    const growOne = (robot, id) => {
+        const newRobot = robot
+        
+        if (newRobot.id === id) {
+            newRobot.price = Math.ceil(newRobot.price*(1+PRICE_RATE));
+            newRobot.currentLevel = ++ newRobot.currentLevel;
+        }
+        
+        return newRobot;
+    }
+
     // updated robot
     const upgradeRobot = (id) => {
     
-        setRobots(robots.map(grow))
+        setRobots(robots.map(
+            function(robot) {return growOne(robot, id)}
+            )
+        )
 
         setRobotInfo(
             robots.find( robot => robot.id === id)
