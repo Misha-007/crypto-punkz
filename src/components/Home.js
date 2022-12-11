@@ -10,7 +10,7 @@ import {avatars as defaultAvatars} from './dataAvatars.js'
 
 const Home = () => {
     // Constants
-    const TIME = 2000; // update robot every 2 seconds
+    const TIME = 15000; // update robot every 2 seconds
     const PRICE_RATE = 0.05; // 5% growth in price
 
     // total coins

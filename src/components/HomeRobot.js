@@ -16,7 +16,7 @@ const HomeRobot = ({ robot, onUpgrade, onRemove, onToggle }) => {
                     <input type='button' value='Sell' onClick={() => onRemove(robot.id)}></input>
                 </div>
                 <div className='timer'>
-                    <span>01:00</span>
+                    <span>Level: {robot.currentLevel}</span>
                 </div>
             </div>
         </div>
