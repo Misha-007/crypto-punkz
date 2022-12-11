@@ -2,7 +2,7 @@ const Avatar = ({avatar, selectedAvatar}) => {
   return (
     <div className='avatar-box'>
         <div className="avatar-name">
-            {avatar.id == 1 ? 'Default' : 'Avatar ' + parseInt(avatar.id - 1)}
+            {avatar.name}
         </div>
         <div className='avatar-img'>
             <img src={avatar.image} alt={avatar.id} onClick={() => selectedAvatar(avatar.id)}/>
