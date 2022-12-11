@@ -169,6 +169,12 @@ input[type=button].shop-btn:hover {
     height: 70px;
 }
 
+.header-info > .avatar:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+
 .home-container {
     height: 100%;
     margin: 0 40px;
@@ -442,6 +448,7 @@ div.info > p {
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
+    row-gap: 10px;
 }
 
 .shop-robot {
@@ -521,4 +528,55 @@ input[type=button].close-btn {
 
 input[type=button].close-btn:hover {
     background-image: url(assets/close-btn-dark.png);
+}
+
+/* AVATAR MODAL */
+.avatar-box {
+    width: 260px;
+    height: 200px;
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1fr 50% 1fr;
+    grid-template-rows: 30px 1fr 30px;
+    grid-template-areas: 
+        'avatar-name avatar-name avatar-name'
+        'avatar-img avatar-img avatar-img'
+        '. buy-btn .';
+    row-gap: 10px;
+}
+
+.avatar-box .avatar-img {
+    position: relative;
+    grid-area: avatar-img;
+    margin: 0px 10px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.avatar-box .avatar-img > img {
+    height: 100%;  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.avatar-box .avatar-name {
+    grid-area: avatar-name;
+    margin: 0px 10px;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+.avatar-box .buy-btn {
+    grid-area: buy-btn;
+    margin: 0px 5px 0px 10px;
+}
+
+.avatar-box .buy-btn input[type=button] {
+    font-size: 1.2em;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
