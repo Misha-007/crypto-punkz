@@ -3,6 +3,7 @@ import HomeRobot from './HomeRobot'
 import HomeRobotInfo from './HomeRobotInfo'
 import Shop from './Shop.js'
 import Avatars from './Avatars.js'
+import DialogModal from './DialogModal'
 import { useState, useEffect } from 'react'
 import {robots as defaultRobots} from './dataRobots.js'
 import sadRobot from '../assets/sad-robot.png'
@@ -15,13 +16,16 @@ const Home = () => {
 
     // total coins
     const [coins, setCoins] = useState(0)
+    const [isOpenDialog, setIsOpenDialog] = useState(false)
 
     //List of owned robots
     const [robots, setRobots] = useState(defaultRobots.slice(0,6)) // Robots 1 - 6
+
     //list of avatars
-    const[avatars,setAvatars]=useState(defaultAvatars)
+    const avatars = defaultAvatars
+
     //selected avatar
-    const [selected,setSelected]=useState(
+    const [selected,setSelected] = useState(
         {
             id: 1,
             image: require('../assets/avatar.png'),
@@ -32,6 +36,7 @@ const Home = () => {
         setSelected(avatar)
     }
     const [isModal, setIsModal] = useState(false)
+
     //selected robot
     const [robotInfo, setRobotInfo] = useState(
         {
@@ -43,14 +48,15 @@ const Home = () => {
             price: 100
         }
     )
+
     //shop robot
     const [shopRobots, setShopRobots]=useState(defaultRobots.slice(6,12)) // robots 7 - 12
     const [isOpen, setIsOpen] = useState(false)
+
     //Sell robot 
     const sellRobot = (id) => {
-        
         robots.find(robot => {
-            if (robot.id == id) {
+            if (robot.id === id) {
                 setCoins(coins + robot.price)
             }
         })
@@ -71,11 +77,13 @@ const Home = () => {
                 })
         }
     }
+
     //Set selected robot
     const selectRobot = (id) => {
         const info = robots.find(x => x.id === id)
         setRobotInfo(info)
     }
+
     //Buy robot
     const buyRobot = (id, price) =>{
         if (price <= coins) {
@@ -83,10 +91,7 @@ const Home = () => {
             setShopRobots(shopRobots.filter((shopRobot) => shopRobot.id !== id ))
             const newRobot = shopRobots.find(x => x.id === id)
             setRobots([...robots,newRobot])
-        } else {
-            console.log('not enough coins')
-        }
-        
+        }   
     }
 
     const growOne = (robot, id) => {
@@ -102,16 +107,21 @@ const Home = () => {
 
     // updated robot
     const upgradeRobot = (id) => {
-    
-        setRobots(robots.map(
-            function(robot) {return growOne(robot, id)}
+        const robotPrice = robots.find( robot => robot.id === id).price
+        const reducedCoins = parseInt(coins - robotPrice * 0.2)
+
+        if (reducedCoins >= 0) {
+            setRobots(robots.map(
+                function(robot) {return growOne(robot, id)}
+                )
             )
-        )
-
-        setRobotInfo(
-            robots.find( robot => robot.id === id)
-        )
-
+            setRobotInfo(
+                robots.find( robot => robot.id === id)
+            )
+            setCoins(reducedCoins)
+        } else {
+            setIsOpenDialog(true)
+        }
     }
 
     const grow = (robot) => {
@@ -153,6 +163,7 @@ const Home = () => {
             </div>
             {isOpen && <Shop setIsOpen={setIsOpen} shopRobots={shopRobots} onBuy={buyRobot} coins={coins} setShopRobots={setShopRobots}/>}
             {isModal && <Avatars setIsModal={setIsModal} avatars={avatars} selectedAvatar={selectedAvatar}/>}
+            {isOpenDialog && <DialogModal setIsOpenDialog={setIsOpenDialog}/>}
         </div>
     )
 }
