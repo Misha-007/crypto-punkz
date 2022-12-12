@@ -36,9 +36,9 @@ const Home = () => {
     const [robotInfo, setRobotInfo] = useState(
         {
             id: 1,
-            robotName: "Robot 1",
+            robotName: "Arachnidroid",
             image: require('../assets/rob1.gif'),
-            description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            description: "A sleek, advanced robot designed for speed and agility",
             currentLevel: 1,
             price: 100
         }
