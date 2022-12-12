@@ -240,7 +240,26 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
     background: #67A0D7;
 }
-  
+
+/* HELP */
+.help-text {
+    padding: 0 20px 0 10px;
+    letter-spacing: 1px;
+}
+
+.help-text > p {
+    font-size: 1.2em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: justify;
+    text-indent: 50px;
+}
+
+.help-text ol {
+    font-size: 1.2em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: justify;
+    list-style-position: outside;
+}
 
 /* HOME SCREEN */
 .home {
@@ -555,7 +574,7 @@ div.info > p {
     position: absolute;
 }
 
-.shop-modal {
+.shop-modal, .help-modal {
     background-color: transparent;
     width: 1000px;
     height: 600px;
@@ -565,7 +584,7 @@ div.info > p {
     position: absolute;
 }
 
-.shop-banner, .settings-banner {
+.shop-banner, .settings-banner, .help-banner {
     position: relative;
     top: -15px;
     left: 50%;
@@ -574,13 +593,13 @@ div.info > p {
     border-radius: 30px;
 }
 
-.shop-bg, .settings-bg {
+.shop-bg, .settings-bg, .help-bg {
     width: 100%;
     height: 100%;
     position: absolute;
 }
 
-.shop-container {
+.shop-container, .help-container {
     width: 800px;
     height: 420px;
     background-color: transparent;
@@ -592,6 +611,7 @@ div.info > p {
     flex-wrap: wrap;
     overflow: auto;
     row-gap: 10px;
+    color: #fff;
 }
 
 .shop-robot {
