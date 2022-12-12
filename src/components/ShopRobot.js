@@ -5,7 +5,7 @@ const ShopRobot = ({ shopRobot, onBuy, coins }) => {
         <div className='shop-robot'>
             <div className="shop-robot-name">
                 <span>{shopRobot.robotName}</span>
-                <span className='shop-level'>{"(Lv. " + shopRobot.currentLevel +")"}</span>
+                <span className='shop-level'>{"Lv. " + shopRobot.currentLevel}</span>
             </div>
             <div className='shop-robot-img'>
                 <img src={shopRobot.image} alt={shopRobot.robotName} />
