@@ -77,11 +77,16 @@ const Home = () => {
         setRobotInfo(info)
     }
     //Buy robot
-    const buyRobot = (id) =>{
-        setShopRobots(shopRobots.filter((shopRobot) => shopRobot.id !== id ))
-        const newRobot = shopRobots.find(x => x.id === id)
-        setRobots([...robots,newRobot])
-        console.log("hello", id)
+    const buyRobot = (id, price) =>{
+        if (price <= coins) {
+            setCoins(coins - price)
+            setShopRobots(shopRobots.filter((shopRobot) => shopRobot.id !== id ))
+            const newRobot = shopRobots.find(x => x.id === id)
+            setRobots([...robots,newRobot])
+        } else {
+            console.log('not enough coins')
+        }
+        
     }
 
     const growOne = (robot, id) => {
@@ -146,7 +151,7 @@ const Home = () => {
                   </div>}
                 <HomeRobotInfo robotInfo={robotInfo} />
             </div>
-            {isOpen && <Shop setIsOpen={setIsOpen} shopRobots={shopRobots} onBuy={buyRobot}/>}
+            {isOpen && <Shop setIsOpen={setIsOpen} shopRobots={shopRobots} onBuy={buyRobot} coins={coins}/>}
             {isModal && <Avatars setIsModal={setIsModal} avatars={avatars} selectedAvatar={selectedAvatar}/>}
         </div>
     )

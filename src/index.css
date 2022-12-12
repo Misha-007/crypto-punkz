@@ -452,6 +452,7 @@ div.info > p {
 }
 
 .shop-robot {
+    position: relative;
     width: 260px;
     height: 200px;
     color: #fff;
@@ -488,12 +489,12 @@ div.info > p {
     transform: translate(-50%, -50%);
 }
 
-.shop-robot .buy-btn {
+.shop-robot .buy-btn, .avatar-box .buy-btn {
     grid-area: buy-btn;
     margin: 0px 5px 0px 10px;
 }
 
-.shop-robot .buy-btn input[type=button] {
+.shop-robot .buy-btn input[type=button], .avatar-box .buy-btn input[type=button] {
     font-size: 1.2em;
     width: 100%;
     height: 100%;
@@ -528,6 +529,19 @@ input[type=button].close-btn {
 
 input[type=button].close-btn:hover {
     background-image: url(assets/close-btn-dark.png);
+}
+
+.shop-disabled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* AVATAR MODAL */
@@ -566,17 +580,4 @@ input[type=button].close-btn:hover {
     margin: 0px 10px;
     text-align: center;
     font-size: 1.4em;
-}
-
-.avatar-box .buy-btn {
-    grid-area: buy-btn;
-    margin: 0px 5px 0px 10px;
-}
-
-.avatar-box .buy-btn input[type=button] {
-    font-size: 1.2em;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
