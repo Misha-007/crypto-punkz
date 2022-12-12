@@ -9,7 +9,7 @@ import {robots as defaultRobots} from './dataRobots.js'
 import sadRobot from '../assets/sad-robot.png'
 import {avatars as defaultAvatars} from './dataAvatars.js'
 
-const Home = () => {
+const Home = ({click, levelUp, error}) => {
     // Constants
     const TIME = 15000; // update robot every 2 seconds
     const PRICE_RATE = 0.05; // 5% growth in price
@@ -111,6 +111,7 @@ const Home = () => {
         const reducedCoins = parseInt(coins - robotPrice * 0.2)
 
         if (reducedCoins >= 0) {
+            levelUp()
             setRobots(robots.map(
                 function(robot) {return growOne(robot, id)}
                 )
@@ -121,6 +122,7 @@ const Home = () => {
             setCoins(reducedCoins)
         } else {
             setIsOpenDialog(true)
+            error()
         }
     }
 
@@ -144,12 +146,12 @@ const Home = () => {
 
     return (
         <div className='home'>    
-            <HomeHeader setIsOpen={setIsOpen} coins={coins} selected={selected} setIsModal={setIsModal}/>
+            <HomeHeader setIsOpen={setIsOpen} coins={coins} selected={selected} setIsModal={setIsModal} click={click}/>
             <div className='home-container'>
                 { robots.length > 0 ?
                 <div className='robot-container'>
                     {robots.map((robot) => (
-                        <HomeRobot key={robot.id} robot={robot} onRemove={sellRobot} onToggle={selectRobot} onUpgrade={upgradeRobot} />
+                        <HomeRobot key={robot.id} robot={robot} onRemove={sellRobot} onToggle={selectRobot} onUpgrade={upgradeRobot} click={click} levelUp={levelUp} />
                     ))}
                 </div>
                 //when no robots
@@ -161,9 +163,9 @@ const Home = () => {
                   </div>}
                 <HomeRobotInfo robotInfo={robotInfo} />
             </div>
-            {isOpen && <Shop setIsOpen={setIsOpen} shopRobots={shopRobots} onBuy={buyRobot} coins={coins} setShopRobots={setShopRobots}/>}
-            {isModal && <Avatars setIsModal={setIsModal} avatars={avatars} selectedAvatar={selectedAvatar}/>}
-            {isOpenDialog && <DialogModal setIsOpenDialog={setIsOpenDialog}/>}
+            {isOpen && <Shop setIsOpen={setIsOpen} shopRobots={shopRobots} onBuy={buyRobot} coins={coins} setShopRobots={setShopRobots} click={click}/>}
+            {isModal && <Avatars setIsModal={setIsModal} avatars={avatars} selectedAvatar={selectedAvatar} click={click}/>}
+            {isOpenDialog && <DialogModal setIsOpenDialog={setIsOpenDialog} click={click}/>}
         </div>
     )
 }

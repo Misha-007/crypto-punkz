@@ -1,7 +1,7 @@
 import banner from '../assets/help-banner.png'
 import helpBg from '../assets/shop-modal-bg.png'
 
-const Help = ({ setIsHelpOpen }) => { 
+const Help = ({ setIsHelpOpen, click }) => { 
     return (
         <div>
             <div className='dark-bg'  onClick={() => setIsHelpOpen(false)}></div>
@@ -29,7 +29,7 @@ const Help = ({ setIsHelpOpen }) => {
                 </div>
                 </div>
                 <img src={banner} className='help-banner' alt='Help Banner' />
-                <input type="button" className='close-btn' onClick={() => setIsHelpOpen(false)}/>
+                <input type="button" className='close-btn' onClick={() => {setIsHelpOpen(false); click();}}/>
             </div>
         </div>
     )

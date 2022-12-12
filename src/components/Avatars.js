@@ -2,7 +2,7 @@ import Avatar from './Avatar.js'
 import banner from '../assets/Profile-banner.png'
 import shopBg from '../assets/shop-modal-bg.png'
 
-const Avatars = ({setIsModal,avatars,selectedAvatar}) => {
+const Avatars = ({setIsModal, avatars, selectedAvatar, click}) => {
   return (
     <div>
         <div className='dark-bg'  onClick={() => setIsModal(false)}></div>
@@ -10,11 +10,11 @@ const Avatars = ({setIsModal,avatars,selectedAvatar}) => {
                 <img src={shopBg} className='shop-bg' alt='Shop Modal Background' />
                 <div className='shop-container'>
                     {avatars.map((avatar) => (
-                        <Avatar key={avatar.id} avatar={avatar} selectedAvatar={selectedAvatar}/>
+                        <Avatar key={avatar.id} avatar={avatar} selectedAvatar={selectedAvatar} click={click} />
                     ))}
                 </div>
             <img src={banner} className='shop-banner' alt='SHop Banner' />
-            <input type="button" className='close-btn' onClick={() => setIsModal(false)}/>
+            <input type="button" className='close-btn' onClick={() => {setIsModal(false); click();}}/>
         </div>
     </div>
   )
