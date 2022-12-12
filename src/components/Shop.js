@@ -2,7 +2,11 @@ import ShopRobot from './ShopRobot.js'
 import banner from '../assets/shop-banner.png'
 import shopBg from '../assets/shop-modal-bg.png'
 
-const Shop = ({ setIsOpen, shopRobots, onBuy, coins}) => {
+const Shop = ({ setIsOpen, shopRobots, setShopRobots ,onBuy, coins}) => {
+    setShopRobots(
+        shopRobots.sort((a, b) => (a.price > b.price) ? 1 : (a.price < b.price) ? -1 : 0)
+    )
+    
     return (
         <div>
             <div className='dark-bg'  onClick={() => setIsOpen(false)}></div>

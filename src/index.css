@@ -469,8 +469,15 @@ div.info > p {
 .shop-robot .shop-robot-name {
     grid-area: shop-robot-name;
     margin: 0px 10px;
-    text-align: center;
     font-size: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shop-robot .shop-robot-name .shop-level {
+    font-size: 0.7em;
+    color: rgb(196, 196, 196);
 }
 
 .shop-robot .shop-robot-img {

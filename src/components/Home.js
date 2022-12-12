@@ -151,7 +151,7 @@ const Home = () => {
                   </div>}
                 <HomeRobotInfo robotInfo={robotInfo} />
             </div>
-            {isOpen && <Shop setIsOpen={setIsOpen} shopRobots={shopRobots} onBuy={buyRobot} coins={coins}/>}
+            {isOpen && <Shop setIsOpen={setIsOpen} shopRobots={shopRobots} onBuy={buyRobot} coins={coins} setShopRobots={setShopRobots}/>}
             {isModal && <Avatars setIsModal={setIsModal} avatars={avatars} selectedAvatar={selectedAvatar}/>}
         </div>
     )
